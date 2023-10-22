@@ -5,7 +5,7 @@
     android:id="@+id/placeHolder"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#410B45"
+    android:background="@color/purple_bg"
     tools:context=".MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
@@ -15,5 +15,4 @@
         android:layout_height="match_parent"
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_graph" />
-
 </FrameLayout>

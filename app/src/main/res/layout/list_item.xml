@@ -14,22 +14,24 @@
 
         <ImageView
             android:id="@+id/imGif"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="@dimen/iv_size"
+            android:layout_height="@dimen/iv_size"
             android:src="@drawable/ic_launcher_foreground"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvTitle"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:gravity="center|left"
-            android:paddingLeft="10sp"
-            android:text="Title"
+            android:layout_width="@dimen/tv_title_size"
+            android:layout_height="@dimen/tv_title_size"
+            android:gravity="center|start"
+            android:paddingStart="@dimen/tv_padding"
+            android:paddingEnd="@dimen/tv_padding"
+            android:text="@string/tv_title"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/tv_title_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imGif"
             app:layout_constraintStart_toStartOf="parent"

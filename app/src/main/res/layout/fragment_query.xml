@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/purple_bg"
-    tools:context=".fragments.MainFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.QueryFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/tv_header_margin"
             android:layout_marginTop="@dimen/tv_header_margin"
-            android:text="@string/tv_trending_text"
+            android:text="@string/tv_search_text"
             android:textColor="@color/white"
             android:textSize="@dimen/tv_header_text_size"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,24 +29,24 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:src="@drawable/ic_search"
-            app:layout_constraintBottom_toTopOf="@+id/rcView"
-            app:layout_constraintEnd_toStartOf="@+id/imReload"
+            app:layout_constraintBottom_toTopOf="@+id/rcSearchView"
+            app:layout_constraintEnd_toStartOf="@+id/imSearchBack"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/imReload"
+            android:id="@+id/imSearchBack"
             android:layout_width="@dimen/im_width"
             android:layout_height="@dimen/im_height"
             android:layout_marginRight="@dimen/im_margin"
             android:layout_marginLeft="@dimen/im_margin"
             android:background="@null"
-            android:src="@drawable/ic_reload"
-            app:layout_constraintBottom_toTopOf="@+id/rcView"
+            android:src="@drawable/ic_back"
+            app:layout_constraintBottom_toTopOf="@+id/rcSearchView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcView"
+            android:id="@+id/rcSearchView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/rc_height"
             android:layout_margin="@dimen/rc_margin"
