@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- fragment_main-->
+    <dimen name="tv_header_margin">4dp</dimen>
+    <dimen name="tv_header_text_size">24sp</dimen>
+
+    <dimen name="im_margin">4dp</dimen>
+    <dimen name="im_width">25dp</dimen>
+    <dimen name="im_height">25dp</dimen>
+
+    <dimen name="rc_height">0dp</dimen>
+    <dimen name="rc_margin">4dp</dimen>
+
+    <!-- list_item -->
+    <dimen name="iv_size">60dp</dimen>
+
+    <dimen name="tv_title_size">0dp</dimen>
+    <dimen name="tv_padding">10sp</dimen>
+    <dimen name="tv_title_text_size">16sp</dimen>
+
+    <!-- fragment_full -->
+    <dimen name="ib_back_size">35dp</dimen>
+    <dimen name="ib_back_margin">4dp</dimen>
+
+    <dimen name="iv_full_size">0dp</dimen>
+
+
+</resources>

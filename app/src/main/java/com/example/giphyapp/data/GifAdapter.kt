@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.giphyapp.R
 import com.example.giphyapp.databinding.ListItemBinding
 
-class GifAdapter(private var gifList: List<GiphyModel>?, val listener: Listener?) :
+class GifAdapter(private var gifList: List<GiphyResponse.GiphyModel>?, private val listener: Listener?) :
     RecyclerView.Adapter<GifAdapter.GifViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GifViewHolder {
@@ -24,36 +24,37 @@ class GifAdapter(private var gifList: List<GiphyModel>?, val listener: Listener?
     }
 
     override fun onBindViewHolder(holder: GifViewHolder, position: Int) {
-        val gifMogel = gifList?.get(position)
+        val gifModel = gifList?.get(position)
 
-        if (gifMogel != null) {
-            holder.loadGif(gifMogel)
+        if (gifModel != null) {
+            holder.loadGif(gifModel)
             holder.itemView.setOnClickListener {
-                listener?.onClick(gifMogel)
+                listener?.onClick(gifModel)
             }
         }
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateData(newGifList: List<GiphyModel>) {
+    fun updateData(newGifList: List<GiphyResponse.GiphyModel>) {
         gifList = newGifList
         notifyDataSetChanged()
     }
 
     class GifViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val gifImageView: ImageView = itemView.findViewById(R.id.imGif)
-        val binding = ListItemBinding.bind(itemView)
+        private val gifImageView: ImageView = itemView.findViewById(R.id.imGif)
+        private val binding = ListItemBinding.bind(itemView)
 
-        fun loadGif(item: GiphyModel) = with(binding) {
-            tvTitle.text = item.title
+        fun loadGif(item: GiphyResponse.GiphyModel) {
+            binding.tvTitle.text = item.title
+
             Glide.with(itemView)
                 .asGif()
-                .load(item.url)
+                .load(item.images.original.url)
                 .into(gifImageView)
         }
     }
 
     interface Listener {
-        fun onClick(item: GiphyModel)
+        fun onClick(item: GiphyResponse.GiphyModel)
     }
 }

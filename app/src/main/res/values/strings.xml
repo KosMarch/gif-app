@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">GiphyApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tv_trending_text">Trending 25 gifs:</string>
+    <string name="tv_search_text">Search gifs:</string>
+    <string name="tv_title">Title</string>
 </resources>

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_mainFragment_to_secondFragment"
             app:destination="@id/secondFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_queryFragment"
+            app:destination="@id/queryFragment" />
     </fragment>
 
     <fragment
@@ -22,4 +25,13 @@
         tools:layout="@layout/fragment_full" >
     </fragment>
 
+    <fragment
+        android:id="@+id/queryFragment"
+        android:name="com.example.giphyapp.fragments.QueryFragment"
+        android:label="fragment_query"
+        tools:layout="@layout/fragment_query" >
+        <action
+            android:id="@+id/action_queryFragment_to_secondFragment"
+            app:destination="@id/secondFragment" />
+    </fragment>
 </navigation>

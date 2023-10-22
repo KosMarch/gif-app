@@ -1,7 +1,6 @@
 package com.example.giphyapp.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,7 +19,6 @@ class FullFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         binding = FragmentFullBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -28,12 +26,16 @@ class FullFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.liveDataCurrent.observe(viewLifecycleOwner) { gifModel ->
-            val gifImageView = binding.imageView
-            Log.d("MyLog", "url is: ${gifModel.url}")
+        binding.imBack.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
+        viewModel.liveDataCurrent.observe(viewLifecycleOwner) {
+            val gifImageView = binding.ivFull
+
             Glide.with(requireContext())
                 .asGif()
-                .load(gifModel.url)
+                .load(it.images.original.url)
                 .into(gifImageView)
         }
     }
