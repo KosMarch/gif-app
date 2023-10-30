@@ -15,7 +15,7 @@
     <dimen name="iv_size">60dp</dimen>
 
     <dimen name="tv_title_size">0dp</dimen>
-    <dimen name="tv_padding">10sp</dimen>
+    <dimen name="tv_padding">10dp</dimen>
     <dimen name="tv_title_text_size">16sp</dimen>
 
     <!-- fragment_full -->
@@ -23,6 +23,4 @@
     <dimen name="ib_back_margin">4dp</dimen>
 
     <dimen name="iv_full_size">0dp</dimen>
-
-
 </resources>
