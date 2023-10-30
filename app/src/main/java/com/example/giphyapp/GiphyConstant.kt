@@ -7,5 +7,4 @@ object GiphyConstant {
     const val OFFSET = 0
     const val RATING = "g"
     const val BUNDLE = "messaging_non_clips"
-    const val SEARCH_TITLE = "Search: "
 }

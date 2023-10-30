@@ -13,9 +13,15 @@
         <action
             android:id="@+id/action_mainFragment_to_secondFragment"
             app:destination="@id/secondFragment" />
+
         <action
             android:id="@+id/action_mainFragment_to_queryFragment"
             app:destination="@id/queryFragment" />
+
+        <argument
+            android:name="imageUrl"
+            app:argType="string" />
+
     </fragment>
 
     <fragment

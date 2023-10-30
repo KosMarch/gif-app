@@ -1,11 +1,11 @@
 package com.example.giphyapp.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,12 +13,11 @@ import com.example.giphyapp.DialogManager
 import com.example.giphyapp.MainViewModel
 import com.example.giphyapp.R
 import com.example.giphyapp.data.GifAdapter
-import com.example.giphyapp.GiphyConstant.API_KEY
-import com.example.giphyapp.data.GiphyResponse
 import com.example.giphyapp.databinding.FragmentMainBinding
 
-class MainFragment : Fragment(), GifAdapter.Listener {
+class MainFragment : Fragment() {
     private val viewModel: MainViewModel by activityViewModels()
+    private val dialogManager = DialogManager()
 
     private lateinit var binding: FragmentMainBinding
 
@@ -33,45 +32,42 @@ class MainFragment : Fragment(), GifAdapter.Listener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rcView.layoutManager = LinearLayoutManager(requireContext())
-        val adapter = GifAdapter(emptyList(), this@MainFragment)
+        val adapter = GifAdapter(emptyList()) { query ->
+            val bundle = Bundle()
+            bundle.putString("imageUrl", query)
+            Navigation.findNavController(view)
+                .navigate(R.id.action_mainFragment_to_secondFragment, bundle)
+        }
         binding.rcView.adapter = adapter
 
         binding.imReload.setOnClickListener {
-            checkApiKey()
+            Toast.makeText(requireContext(), "Updating GIF", Toast.LENGTH_SHORT).show()
             viewModel.updateTrendingGifs()
         }
 
         binding.imSearch.setOnClickListener {
-            DialogManager.searchByQuery(requireContext(), object: DialogManager.Listener {
-                override fun onClick(query: String?) {
-                    Navigation.findNavController(it).navigate(R.id.action_mainFragment_to_queryFragment)
-                    query?.let { viewModel.updateQueryGifs(it) }
+            dialogManager.searchByQuery(requireContext()) { query ->
+                Navigation.findNavController(it)
+                    .navigate(R.id.action_mainFragment_to_queryFragment)
+                query?.let {
+                    viewModel.updateQueryGifs(it)
                 }
-            })
+            }
         }
 
-        viewModel.liveDataList.observe(viewLifecycleOwner) {
+        viewModel.listGifs.observe(viewLifecycleOwner) {
             adapter.updateData(it)
+        }
+
+        viewModel.errorMessage.observe(viewLifecycleOwner) {
+            if (!it.isNullOrBlank()) {
+                dialogManager.errorMessage(requireContext(), it)
+            }
         }
     }
 
     override fun onResume() {
         super.onResume()
-        checkApiKey()
         viewModel.updateTrendingGifs()
-    }
-
-    override fun onClick(item: GiphyResponse.GiphyModel) {
-        viewModel.setLiveDataCurrent(item)
-
-        view?.let {
-            Navigation.findNavController(it).navigate(R.id.action_mainFragment_to_secondFragment)
-        }
-    }
-
-    private fun checkApiKey() {
-        if (API_KEY.isBlank()) {
-            Toast.makeText(requireContext(), "Please add api_key", Toast.LENGTH_LONG).show()
-        }
     }
 }
